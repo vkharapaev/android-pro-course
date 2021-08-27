@@ -10,7 +10,7 @@ class DictionaryInteractor @Inject constructor(
 ) {
     fun getTranslations(word: String): Single<List<Translations>> {
         return Single.just(word.trim()).flatMap {
-            if (word.length < 4) {
+            if (word.length < 3) {
                 Single.just(emptyList())
             } else {
                 dictionaryRepository.getTranslations(word)
