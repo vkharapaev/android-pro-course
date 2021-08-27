@@ -2,7 +2,7 @@ package com.headmostlab.justtranslate.domain.entities
 
 data class Translations(
     val text: String?,
-    val meaning: List<Meanings>?
+    val meanings: List<Meanings>?
 )
 
 data class Meanings(

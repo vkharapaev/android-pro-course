@@ -1,6 +1,5 @@
 package com.headmostlab.justtranslate
 
-import android.app.Activity
 import android.app.Application
 import com.headmostlab.justtranslate.di.DaggerAppComponent
 import dagger.android.AndroidInjector

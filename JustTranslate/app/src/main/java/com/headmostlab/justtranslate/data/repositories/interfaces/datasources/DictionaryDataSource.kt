@@ -1,8 +1,8 @@
 package com.headmostlab.justtranslate.data.repositories.interfaces.datasources
 
 import com.headmostlab.justtranslate.domain.entities.Translations
-import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.core.Single
 
-interface SkyEngDataSource {
-    fun getTranslations(word: String): Observable<Translations>
+interface DictionaryDataSource {
+    fun getTranslations(word: String): Single<List<Translations>>
 }

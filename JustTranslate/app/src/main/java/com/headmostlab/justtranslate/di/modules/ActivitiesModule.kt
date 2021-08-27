@@ -1,7 +1,7 @@
-package com.headmostlab.justtranslate.di
+package com.headmostlab.justtranslate.di.modules
 
 import com.headmostlab.justtranslate.di.scopes.ActivityScope
-import com.headmostlab.justtranslate.presentation.ui.MainActivity
+import com.headmostlab.justtranslate.presentation.ui.activities.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

@@ -1,8 +1,7 @@
-package com.headmostlab.justtranslate.di
+package com.headmostlab.justtranslate.di.modules
 
-import android.content.Context
 import com.headmostlab.justtranslate.BuildConfig
-import com.headmostlab.justtranslate.data.datasources.network.skyeng.SkyEngApi
+import com.headmostlab.justtranslate.data.datasources.network.skyeng.SkyEngDictionaryApi
 import com.headmostlab.justtranslate.di.scopes.AppScope
 import dagger.Module
 import dagger.Provides
@@ -21,7 +20,7 @@ class SkyEngApiModule {
 
     @AppScope
     @Provides
-    fun provideSkyEngApi(context: Context): SkyEngApi {
+    fun provideSkyEngApi(): SkyEngDictionaryApi {
 
         val client = OkHttpClient.Builder().apply {
             addInterceptor(
@@ -39,7 +38,7 @@ class SkyEngApiModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        return retrofit.create(SkyEngApi::class.java)
+        return retrofit.create(SkyEngDictionaryApi::class.java)
     }
 
 }
