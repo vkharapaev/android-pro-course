@@ -2,10 +2,10 @@ package com.headmostlab.justtranslate.domain.entities
 
 data class Translations(
     val text: String?,
-    val meanings: List<Meanings>?
+    val meanings: List<Meaning>?
 )
 
-data class Meanings(
+data class Meaning(
     val translation: Translation?,
     val imageUrl: String?
 )

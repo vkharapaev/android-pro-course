@@ -3,6 +3,7 @@ package com.headmostlab.justtranslate.di.modules
 import com.headmostlab.justtranslate.BuildConfig
 import com.headmostlab.justtranslate.data.datasources.network.skyeng.SkyEngDictionaryApi
 import com.headmostlab.justtranslate.di.scopes.AppScope
+import com.headmostlab.justtranslate.di.scopes.FragmentScope
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -18,7 +19,7 @@ class SkyEngApiModule {
         private const val BASE_URL = "https://dictionary.skyeng.ru/api/public/v1/"
     }
 
-    @AppScope
+    @FragmentScope
     @Provides
     fun provideSkyEngApi(): SkyEngDictionaryApi {
 
