@@ -9,6 +9,6 @@ import dagger.android.ContributesAndroidInjector
 interface FragmentsModule {
 
     @FragmentScope
-    @ContributesAndroidInjector
-    fun contributeEnterWordFragment(): DictionaryFragment
+    @ContributesAndroidInjector(modules = [DictionaryFragmentModule::class, SkyEngApiModule::class])
+    fun contributeDictionaryFragment(): DictionaryFragment
 }

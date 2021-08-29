@@ -17,7 +17,6 @@ import dagger.android.AndroidInjectionModule
         AndroidInjectionModule::class,
         ActivitiesModule::class,
         FragmentsModule::class,
-        SkyEngApiModule::class,
         AppCommonModule::class
     ]
 )
