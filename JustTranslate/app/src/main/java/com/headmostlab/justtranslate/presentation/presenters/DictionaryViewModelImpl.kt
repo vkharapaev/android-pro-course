@@ -3,39 +3,35 @@ package com.headmostlab.justtranslate.presentation.presenters
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.headmostlab.justtranslate.domain.entities.Translations
 import com.headmostlab.justtranslate.domain.interactors.DictionaryInteractor
-import com.headmostlab.justtranslate.domain.interactors.interfaces.Schedulers
-import com.headmostlab.justtranslate.domain.interactors.interfaces.presenters.DictionaryViewModel
-import io.reactivex.rxjava3.disposables.CompositeDisposable
-import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class DictionaryViewModelImpl @Inject constructor(
-    private val dictionaryInteractor: DictionaryInteractor,
-    private val schedulers: Schedulers
-) : ViewModel(), DictionaryViewModel {
-
-    private val disposables = CompositeDisposable()
+class DictionaryViewModelImpl constructor(
+    private val dictionaryInteractor: DictionaryInteractor
+) : ViewModel() {
 
     private val translations = MutableLiveData<List<Translations>>()
 
-    override fun search(word: String): LiveData<List<Translations>> {
-        disposables.clear()
-        disposables.add(
-            dictionaryInteractor.getTranslations(word)
-                .subscribeOn(schedulers.io())
-                .observeOn(schedulers.ui())
-                .doOnSubscribe {
-                    translations.value = emptyList()
+    private var job: Job? = null
+
+    fun search(word: String): LiveData<List<Translations>> {
+        job?.cancel()
+        job = viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                try {
+                    translations.postValue(emptyList())
+                    val found = dictionaryInteractor.getTranslations(word)
+                    translations.postValue(found)
+                } catch (e: Throwable) {
+                    e.printStackTrace()
                 }
-                .subscribe({
-                    translations.value = it
-                }, {
-                    it.printStackTrace()
-                })
-        )
+            }
+        }
         return translations
     }
-
-    override fun onCleared() = disposables.clear()
 }
