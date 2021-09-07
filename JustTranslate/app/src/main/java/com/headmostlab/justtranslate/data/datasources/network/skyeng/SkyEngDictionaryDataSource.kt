@@ -5,7 +5,7 @@ import com.headmostlab.justtranslate.domain.entities.Translations
 import io.reactivex.rxjava3.core.Single
 import javax.inject.Inject
 
-class SkyEngDictionaryDataSource @Inject constructor(private val skyEngDictionaryApi: SkyEngDictionaryApi) :
+class SkyEngDictionaryDataSource constructor(private val skyEngDictionaryApi: SkyEngDictionaryApi) :
     DictionaryDataSource {
     override fun getTranslations(word: String): Single<List<Translations>> {
         return skyEngDictionaryApi.search(word)

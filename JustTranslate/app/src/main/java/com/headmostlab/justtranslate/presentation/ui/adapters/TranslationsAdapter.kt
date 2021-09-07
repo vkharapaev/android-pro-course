@@ -4,15 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.shape.RoundedCornerTreatment
 import com.headmostlab.justtranslate.databinding.MeaningItemBinding
 import com.headmostlab.justtranslate.databinding.TranslationsItemBinding
 import com.headmostlab.justtranslate.domain.entities.Meaning
 import com.headmostlab.justtranslate.domain.entities.Translations
 import com.squareup.picasso.Picasso
-import com.squareup.picasso.Transformation
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
-import jp.wasabeef.picasso.transformations.RoundedCornersTransformation
 
 class TranslationsAdapter : RecyclerView.Adapter<TranslationsViewHolder>() {
 

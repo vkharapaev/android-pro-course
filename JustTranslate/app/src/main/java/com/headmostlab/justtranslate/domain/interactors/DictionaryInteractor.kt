@@ -3,9 +3,8 @@ package com.headmostlab.justtranslate.domain.interactors
 import com.headmostlab.justtranslate.domain.entities.Translations
 import com.headmostlab.justtranslate.domain.interactors.interfaces.repositories.DictionaryRepository
 import io.reactivex.rxjava3.core.Single
-import javax.inject.Inject
 
-class DictionaryInteractor @Inject constructor(
+class DictionaryInteractor constructor(
     private val dictionaryRepository: DictionaryRepository
 ) {
     fun getTranslations(word: String): Single<List<Translations>> {

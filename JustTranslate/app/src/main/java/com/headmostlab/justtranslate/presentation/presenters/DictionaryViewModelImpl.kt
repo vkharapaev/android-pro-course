@@ -8,9 +8,8 @@ import com.headmostlab.justtranslate.domain.interactors.DictionaryInteractor
 import com.headmostlab.justtranslate.domain.interactors.interfaces.Schedulers
 import com.headmostlab.justtranslate.domain.interactors.interfaces.presenters.DictionaryViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import javax.inject.Inject
 
-class DictionaryViewModelImpl @Inject constructor(
+class DictionaryViewModelImpl constructor(
     private val dictionaryInteractor: DictionaryInteractor,
     private val schedulers: Schedulers
 ) : ViewModel(), DictionaryViewModel {
