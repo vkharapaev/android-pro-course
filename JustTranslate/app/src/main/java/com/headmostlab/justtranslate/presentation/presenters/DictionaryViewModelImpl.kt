@@ -6,19 +6,18 @@ import androidx.lifecycle.ViewModel
 import com.headmostlab.justtranslate.domain.entities.Translations
 import com.headmostlab.justtranslate.domain.interactors.DictionaryInteractor
 import com.headmostlab.justtranslate.domain.interactors.interfaces.Schedulers
-import com.headmostlab.justtranslate.domain.interactors.interfaces.presenters.DictionaryViewModel
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 class DictionaryViewModelImpl constructor(
     private val dictionaryInteractor: DictionaryInteractor,
     private val schedulers: Schedulers
-) : ViewModel(), DictionaryViewModel {
+) : ViewModel() {
 
     private val disposables = CompositeDisposable()
 
     private val translations = MutableLiveData<List<Translations>>()
 
-    override fun search(word: String): LiveData<List<Translations>> {
+    fun search(word: String): LiveData<List<Translations>> {
         disposables.clear()
         disposables.add(
             dictionaryInteractor.getTranslations(word)
