@@ -8,6 +8,7 @@ import com.headmostlab.justtranslate.domain.interactors.interfaces.Schedulers
 import com.headmostlab.justtranslate.domain.interactors.interfaces.repositories.DictionaryRepository
 import com.headmostlab.justtranslate.presentation.presenters.DictionaryViewModelImpl
 import com.headmostlab.justtranslate.presentation.ui.AndroidSchedulers
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val application = module {
@@ -17,7 +18,7 @@ val application = module {
 }
 
 val mainScreen = module {
-    factory {
+    viewModel {
         DictionaryViewModelImpl(
             dictionaryInteractor = DictionaryInteractor(get()),
             schedulers = get()
