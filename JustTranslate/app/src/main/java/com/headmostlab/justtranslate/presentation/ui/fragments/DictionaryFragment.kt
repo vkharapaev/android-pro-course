@@ -5,7 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import androidx.fragment.app.Fragment
-import com.headmostlab.findmovie2.ui.utils.viewBinding
+import com.headmostlab.justtranslate.presentation.ui.utils.viewBinding
 import com.headmostlab.justtranslate.R
 import com.headmostlab.justtranslate.databinding.FragmentDictionaryBinding
 import com.headmostlab.justtranslate.presentation.presenters.DictionaryViewModelImpl

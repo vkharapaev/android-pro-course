@@ -1,4 +1,4 @@
-package com.headmostlab.findmovie2.ui.utils
+package com.headmostlab.justtranslate.presentation.ui.utils
 
 import android.view.View
 import androidx.fragment.app.Fragment
