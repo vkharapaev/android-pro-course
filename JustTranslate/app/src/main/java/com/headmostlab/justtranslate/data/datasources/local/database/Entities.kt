@@ -8,14 +8,14 @@ import androidx.room.Relation
 @Entity
 data class TranslationsEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int?,
     val text: String?
 )
 
 @Entity
 data class MeaningEntity(
     @PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int?,
     val translationsId: Int,
     val translation: String?,
     val imageUrl: String?
