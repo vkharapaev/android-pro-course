@@ -10,6 +10,9 @@ import com.headmostlab.justtranslate.domain.interactors.DictionaryInteractor
 import com.headmostlab.justtranslate.data.repositories.interfaces.network.NetworkStatus
 import com.headmostlab.justtranslate.domain.interactors.interfaces.repositories.DictionaryRepository
 import com.headmostlab.justtranslate.presentation.presenters.DictionaryViewModel
+import com.headmostlab.justtranslate.presentation.presenters.TranslationsDetailViewModel
+import com.headmostlab.justtranslate.presentation.ui.fragments.DictionaryFragment
+import com.headmostlab.justtranslate.presentation.ui.fragments.TranslationsDetailFragment
 import com.headmostlab.justtranslate.presentation.ui.network.AndroidNetworkStatus
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -29,7 +32,13 @@ val application = module {
 }
 
 val mainScreen = module {
-    viewModel {
-        DictionaryViewModel(DictionaryInteractor(get()))
+    scope<DictionaryFragment> {
+        viewModel { DictionaryViewModel(DictionaryInteractor(get())) }
+    }
+}
+
+val detailScreen = module {
+    scope<TranslationsDetailFragment> {
+        viewModel { TranslationsDetailViewModel(get()) }
     }
 }
