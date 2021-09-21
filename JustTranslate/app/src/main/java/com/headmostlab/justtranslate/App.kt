@@ -2,6 +2,7 @@ package com.headmostlab.justtranslate
 
 import android.app.Application
 import com.headmostlab.justtranslate.di.application
+import com.headmostlab.justtranslate.di.detailScreen
 import com.headmostlab.justtranslate.di.mainScreen
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -13,7 +14,7 @@ class App : Application() {
 
         startKoin {
             androidContext(this@App)
-            modules(listOf(application, mainScreen))
+            modules(listOf(application, mainScreen, detailScreen))
         }
     }
 }

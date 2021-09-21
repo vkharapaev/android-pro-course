@@ -3,19 +3,25 @@ package com.headmostlab.justtranslate.presentation.ui.fragments
 import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
-import androidx.fragment.app.Fragment
 import com.headmostlab.justtranslate.R
 import com.headmostlab.justtranslate.databinding.FragmentDictionaryBinding
 import com.headmostlab.justtranslate.presentation.presenters.DictionaryViewModel
 import com.headmostlab.justtranslate.presentation.ui.adapters.TranslationsAdapter
 import com.headmostlab.justtranslate.presentation.ui.utils.viewBinding
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.scope.ScopeFragment
 
-class DictionaryFragment : Fragment(R.layout.fragment_dictionary) {
+class DictionaryFragment : ScopeFragment(R.layout.fragment_dictionary) {
 
-    private val vm: DictionaryViewModel by viewModel()
+    private val vm: DictionaryViewModel by scope.inject()
+
     private val binding by viewBinding(FragmentDictionaryBinding::bind)
-    private val adapter = TranslationsAdapter()
+
+    private val adapter = TranslationsAdapter {
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.container, TranslationsDetailFragment.newInstance(it))
+            addToBackStack(null)
+        }.commit()
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         vm.translations.observe(viewLifecycleOwner) { adapter.setData(it) }

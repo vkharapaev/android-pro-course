@@ -11,7 +11,9 @@ import com.headmostlab.justtranslate.domain.entities.Translations
 import com.squareup.picasso.Picasso
 import jp.wasabeef.picasso.transformations.CropCircleTransformation
 
-class TranslationsAdapter : RecyclerView.Adapter<TranslationsViewHolder>() {
+class TranslationsAdapter(
+    private val itemClickListener: ((Translations) -> Unit)? = null
+) : RecyclerView.Adapter<TranslationsViewHolder>() {
 
     private val data = mutableListOf<Translations>()
 
@@ -25,18 +27,24 @@ class TranslationsAdapter : RecyclerView.Adapter<TranslationsViewHolder>() {
         TranslationsViewHolder.create(parent)
 
     override fun onBindViewHolder(holder: TranslationsViewHolder, position: Int) =
-        holder.bind(data[position])
+        holder.bind(data[position], itemClickListener)
 
     override fun getItemCount(): Int = data.size
 }
 
-class TranslationsViewHolder(private val vb: TranslationsItemBinding) :
+class TranslationsViewHolder(
+    private val vb: TranslationsItemBinding
+) :
     RecyclerView.ViewHolder(vb.root) {
 
-    fun bind(translations: Translations) {
+    fun bind(
+        translations: Translations,
+        itemClickListener: ((Translations) -> Unit)? = null
+    ) {
         vb.phraseTextView.text = translations.text
         translations.meanings?.elementAtOrNull(0).let { renderMeaning(it, vb.meaningOne) }
         translations.meanings?.elementAtOrNull(1).let { renderMeaning(it, vb.meaningTwo) }
+        vb.root.setOnClickListener { itemClickListener?.invoke(translations) }
     }
 
     private fun renderMeaning(meaning: Meaning?, vb: MeaningItemBinding) {
